@@ -6,11 +6,28 @@
   <title>Blogs</title>
 </head>
 <body>
-  <h1>Personal Blog</h1>
-  <form action="/" method="POST">
-    <input type="text" name="article" placeholder="Write article">
+  <h1>Your Personal Blog</h1>
+
+  <form action="/create" method="POST">
+    <input type="text" name="articleText" placeholder="Write blog article here">
     <input type="submit" value="OK">
   </form>
+
+  <h2>Blogs List</h2>
+  <% if (locals.articleTexts) { %>
+    <% for (let i = 0; i < articleTexts.length; i++) { %>
+      <p><%= articleTexts[i] %></p>
+      <!-- <form action="/edit" method="GET">
+        <input type="hidden" name="articleIndex" value="<%= i %>">
+        <button type="submit">Edit</button>
+      </form> -->
+      <form action="/delete" method="POST">
+        <input type="hidden" name="articleIndex" value="<%= i %>">
+        <button type="submit">Delete</button>
+      </form>
+    <% } %>
+  <% } %>
+
 </body>
 </html>
 
