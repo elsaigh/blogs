@@ -26,9 +26,9 @@ app.post('/create', (req, res) => {
 })
 
 app.post('/delete', (req, res) => {
-  const deletionIndex = req.body['articleIndex']
+  const deleteIndex = req.body['deleteIndex']
 
-  articleTexts.splice(deletionIndex, 1);
+  articleTexts.splice(deleteIndex, 1)
 
   console.log(articleTexts)
   res.render('index.ejs', {
@@ -36,16 +36,18 @@ app.post('/delete', (req, res) => {
   })
 })
 
-// app.post('/edit', (req, res) => {
-//   const deletionIndex = req.body['articleIndex']
+app.post('/save', (req, res) => {
+  const editIndex = req.body['editIndex']
+  const editText = req.body['editText']
+  console.log('Edit index: ' + editIndex)
+  console.log('Edit content: ' + editText)
 
-//   articleTexts.splice(deletionIndex, 1);
+  articleTexts[editIndex] = editText
 
-//   console.log(articleTexts)
-//   res.render('index.ejs', {
-//     articleTexts: articleTexts
-//   })
-// })
+  res.render('index.ejs', {
+    articleTexts: articleTexts
+  })
+})
 
 app.listen(port, () => {
   console.log(`Listening on port: ${port}`)

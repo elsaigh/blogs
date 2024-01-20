@@ -16,18 +16,33 @@
   <h2>Blogs List</h2>
   <% if (locals.articleTexts) { %>
     <% for (let i = 0; i < articleTexts.length; i++) { %>
-      <p><%= articleTexts[i] %></p>
-      <!-- <form action="/edit" method="GET">
-        <input type="hidden" name="articleIndex" value="<%= i %>">
-        <button type="submit">Edit</button>
-      </form> -->
+
+      <form action="/save" method="POST">
+        <p contenteditable="true" id="<%= 'editText' + i %>"><%= articleTexts[i] %></p>
+        <input type="hidden" name="editIndex" value="<%= i %>">
+        <input type="hidden" name="editText" id="<%= 'editTextValue' + i %>" value="<%= articleTexts[i] %>">
+        <input type="submit" value="Save">
+      </form>
+
       <form action="/delete" method="POST">
-        <input type="hidden" name="articleIndex" value="<%= i %>">
+        <input type="hidden" name="deleteIndex" value="<%= i %>">
         <button type="submit">Delete</button>
       </form>
+
     <% } %>
   <% } %>
 
+  <script>
+    // Update the hidden input field with the edited content before submitting the form
+    document.querySelectorAll('[contenteditable]').forEach((element, index) => {
+      const editTextValueInput = document.getElementById(`editTextValue${index}`)
+      // This makes the hidden input listen for any changes to the p element and update
+      element.addEventListener('input', () => {
+        // hidden input = updated p content
+        editTextValueInput.value = element.innerHTML
+      })
+    })
+  </script>
 </body>
 </html>
 
