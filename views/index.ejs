@@ -25,7 +25,7 @@
         <form action="/save" method="POST">
           <p contenteditable="true" id="<%= 'editText' + i %>"><%= articleTexts[i] %></p>
           <input type="hidden" name="editIndex" value="<%= i %>">
-          <input type="hidden" name="editText" id="<%= 'editTextValue' + i %>" value="<%= articleTexts[i] %>">
+          <input type="hidden" name="editText" id="<%= 'editTextValue' + i %>" value="<%- articleTexts[i] %>">
           <input type="submit" value="Save">
         </form>
 
@@ -45,7 +45,7 @@
       // This makes the hidden input listen for any changes to the p element and update
       element.addEventListener('input', () => {
         // hidden input = updated p content
-        editTextValueInput.value = element.innerHTML
+        editTextValueInput.value = element.textContent
       })
     })
   </script>
