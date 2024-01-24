@@ -3,32 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Georama&family=Marcellus+SC&display=swap" rel="stylesheet">
   <title>Blogs</title>
 </head>
 <body>
-  <h1>Your Personal Blog</h1>
+  <h1>Your Personal Blog Page</h1>
 
   <form action="/create" method="POST">
     <input type="text" name="articleText" placeholder="Write blog article here">
-    <input type="submit" value="OK">
+    <input type="submit" value="Create">
   </form>
 
-  <h2>Blogs List</h2>
   <% if (locals.articleTexts) { %>
+    <h2>Your Blogs List</h2>
     <% for (let i = 0; i < articleTexts.length; i++) { %>
+      <div class="blog">
 
-      <form action="/save" method="POST">
-        <p contenteditable="true" id="<%= 'editText' + i %>"><%= articleTexts[i] %></p>
-        <input type="hidden" name="editIndex" value="<%= i %>">
-        <input type="hidden" name="editText" id="<%= 'editTextValue' + i %>" value="<%= articleTexts[i] %>">
-        <input type="submit" value="Save">
-      </form>
+        <form action="/save" method="POST">
+          <p contenteditable="true" id="<%= 'editText' + i %>"><%= articleTexts[i] %></p>
+          <input type="hidden" name="editIndex" value="<%= i %>">
+          <input type="hidden" name="editText" id="<%= 'editTextValue' + i %>" value="<%= articleTexts[i] %>">
+          <input type="submit" value="Save">
+        </form>
 
-      <form action="/delete" method="POST">
-        <input type="hidden" name="deleteIndex" value="<%= i %>">
-        <button type="submit">Delete</button>
-      </form>
+        <form action="/delete" method="POST">
+          <input type="hidden" name="deleteIndex" value="<%= i %>">
+          <input type="submit" value="Delete">
+        </form>
 
+      </div>
     <% } %>
   <% } %>
 
