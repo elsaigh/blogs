@@ -7,12 +7,13 @@ body {
 
 h1 {
   font-family: 'Marcellus SC', serif;
+  font-weight: bolder;
   align-items: center;
-  font-weight: 900;
 }
 
 h2 {
   font-family: 'Georama', sans-serif;
+  font-weight: bolder;
   align-items: center;
 }
 
@@ -22,13 +23,23 @@ form {
   margin-bottom: 10px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 500px;
+  width: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-input[type="text"] {
+form[action="/delete"] {
+  margin: auto;
+  margin-bottom: 20px;
+  width: 50%;
+  padding: 0px;
+  display: grid;
+  align-items: center;
+}
+
+input[type="text"],
+p[contenteditable="true"] {
   width: 100%;
   padding: 8px;
   margin-bottom: 10px;
